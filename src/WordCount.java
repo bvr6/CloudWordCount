@@ -101,6 +101,7 @@ public class WordCount {
   }
 
   public static void main(String[] args) throws Exception {
+	long timeStart = System.currentTimeMillis();
     Configuration conf = new Configuration();
     GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
     String[] remainingArgs = optionParser.getRemainingArgs();
@@ -127,7 +128,8 @@ public class WordCount {
     }
     FileInputFormat.addInputPath(job, new Path(otherArgs.get(0)));
     FileOutputFormat.setOutputPath(job, new Path(otherArgs.get(1)));
-
+    long timeEnd = System.currentTimeMillis();
+    System.out.println("Execution time: " + (long) (timeEnd - timeStart) + "milliseconds");
     System.exit(job.waitForCompletion(true) ? 0 : 1);
   }
 }
